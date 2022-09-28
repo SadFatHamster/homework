@@ -1,0 +1,62 @@
+# класс Товар
+class Good:
+  def __init__(self, name, code):
+        # название и артикул должны быть разными для каждого экземпляра класса
+    self.name = name
+    self.code = code
+#класс Категория товара
+class Category:
+  def __init__(self, name, goods):
+    # название и набор товаров должны быть разными для каждого экземпляра класса
+    self.name = name
+    self.goods = goods
+  def print_cat(self):
+    #для удобства печати
+    print('категория',self.name,':')
+    for g in self.goods:
+      print(g.name, g.code)
+
+#класс Категория товара
+class User:
+  def __init__(self, name, cats):
+        # название и набор категорий должны быть разными для каждого экземпляра класса
+    self.name = name
+    self.cats = cats 
+  def like(self, cat):
+    #добваляем категорию в список любимых для данного пользователя
+    self.cats.add(cat)
+
+#Добавляем 2 произвольных товара
+hamster = Good('хомяк',8506)
+apple = Good('яблоко',212)
+#Затем создаем 1 категория
+cheap = Category('дешевые',set()) # множество, чтобы без дублей, порядок не важен
+#Далее в категорию добавляем 2 товара
+cheap.goods.add(hamster)
+cheap.goods.add(apple)
+#Добавляем 3 произвольных товара
+dog = Good('пес',4410)
+milk = Good('млеко',100)
+heart = Good('сердце',0)
+#Создаем еще 2 категории
+black = Category('черные',set())
+flat = Category('плоские',set())
+#В одну из новых категорий добавляем все 3 новых товара
+black.goods.add(dog)
+black.goods.add(milk)
+black.goods.add(heart)
+#Затем выводим на экран содержимое всех 3 категорий
+cheap.print_cat()
+black.print_cat()
+flat.print_cat()
+#Создаем пользователя
+oleg = User('олег',set())
+#Добавляем в любимые категории пользователя 2 произвольные категории
+oleg.like(cheap)
+oleg.like(black)
+# и выводим их на экран
+#без метода обойдемся
+print('любимые категории олега')
+for c in oleg.cats:
+  #без метода на этот раз
+  print(c.name)
